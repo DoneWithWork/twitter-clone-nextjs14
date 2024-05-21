@@ -17,9 +17,10 @@ datasource db {
 model User{
   id String @id
   username String
+  photoUrl String
   email String
   posts Post[]
-  
+  likes Like[]
 }
 
 model Post{
@@ -27,7 +28,7 @@ model Post{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   tags String[]
-  title String
+  likes Like[]
   content String
   userId String
   user User @relation(fields: [userId], references: [id])
@@ -35,5 +36,9 @@ model Post{
 
 model Like{
   id String @id @default(uuid())
+  userId String
+  postId String
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
 
 }

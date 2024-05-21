@@ -59,6 +59,7 @@ export async function POST(req: Request) {
     const newUser = await db.user.create({
       data: {
         id: id as string,
+        photoUrl: evt.data.image_url as string,
         email: evt.data.email_addresses[0].email_address as string,
         username: evt.data.first_name as string,
       },
@@ -75,6 +76,7 @@ export async function POST(req: Request) {
         id: id as string,
       },
       data: {
+        photoUrl: evt.data.image_url as string,
         email: evt.data.email_addresses[0].email_address as string,
         username: evt.data.first_name as string,
       },
