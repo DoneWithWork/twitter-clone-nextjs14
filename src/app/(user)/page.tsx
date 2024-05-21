@@ -46,22 +46,7 @@ export default async function Home() {
     </>
   );
 }
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  const user = await currentUser();
-  return {
-    title: user?.firstName || "User",
-    openGraph: {
-      title: user?.firstName || "User",
-      description: "Profile Page",
 
-      locale: "en_US",
-      type: "website",
-    },
-  };
-}
 async function PostCard({ CurUser }: { CurUser: UserType }) {
   const posts = await getPosts();
   const data = posts.map((post) => {

@@ -8,7 +8,23 @@ import db from "../../../../prisma/db/db";
 import { cache } from "@/lib/cache";
 import PostCardItem from "@/app/_components/PostCard";
 import { UserType } from "@/lib/types";
+import { Metadata, ResolvingMetadata } from "next";
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const user = await currentUser();
+  return {
+    title: user?.firstName || "User",
+    openGraph: {
+      title: user?.firstName || "User",
+      description: "Profile Page",
 
+      locale: "en_US",
+      type: "website",
+    },
+  };
+}
 export default async function Profile() {
   const user = await currentUser();
   if (!user) {
