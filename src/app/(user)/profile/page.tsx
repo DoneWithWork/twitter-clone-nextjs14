@@ -1,17 +1,15 @@
 import GoBackBtn from "@/app/_components/GoBackBtn";
 import { currentUser } from "@clerk/nextjs/server";
 import { ArrowLeft, HeartIcon, Share2, ShareIcon } from "lucide-react";
-import { Share } from "next/font/google";
+
 import Image from "next/image";
 import React, { Suspense } from "react";
 import db from "../../../../prisma/db/db";
 import { cache } from "@/lib/cache";
 import PostCardItem from "@/app/_components/PostCard";
 import { UserType } from "@/lib/types";
-import { Metadata, ResolvingMetadata } from "next";
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+import { Metadata } from "next";
+export async function generateMetadata(): Promise<Metadata> {
   // read route params
   const user = await currentUser();
   return {

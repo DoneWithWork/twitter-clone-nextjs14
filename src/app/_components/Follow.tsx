@@ -25,5 +25,3 @@ export default function Follow() {
     </div>
   );
 }
-
-function FollowCard({ user }: User) {}
