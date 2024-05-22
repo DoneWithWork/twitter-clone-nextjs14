@@ -25,6 +25,7 @@ export async function LikePost(args: LikePostArgs) {
 
     revalidateTag("userpost");
     revalidatePath("/(user)/[user]", "page");
+    revalidateTag("getPosts");
     revalidatePath("/profile");
     return true;
   } else {
@@ -34,7 +35,7 @@ export async function LikePost(args: LikePostArgs) {
       },
     });
     revalidatePath("/(user)/[user]", "page");
-
+    revalidateTag("getPosts");
     revalidateTag("userpost");
     revalidatePath("/profile");
     return false;
