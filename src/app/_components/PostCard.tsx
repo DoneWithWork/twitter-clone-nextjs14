@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function PostCardItem({ post }: { post: any }) {
   const [liked, setLiked] = useState(false);
-
+  const [likes, setLikes] = useState(post.likes.length);
   useEffect(() => {
     for (let i = 0; i < post.likes.length; i++) {
       if (post.likes[i].userId === post.CurUser.id) {
@@ -19,6 +19,7 @@ export default function PostCardItem({ post }: { post: any }) {
     }
   }, []);
   const handleLike = async () => {
+    setLikes(liked ? likes - 1 : likes + 1);
     const args = {
       userId: post.CurUser.id,
       postId: post.id,
@@ -67,7 +68,7 @@ export default function PostCardItem({ post }: { post: any }) {
             onClick={handleLike}
           />
         )}
-        <span>{post.likes.length}</span>
+        <span>{likes}</span>
         {post.tags.length > 0 &&
           post.tags.map((tag: string, index: number) => (
             <span
