@@ -20,11 +20,13 @@ export async function NewPost(prevState: unknown, formData: FormData) {
     return { message: result.error.formErrors.fieldErrors };
   }
   const data = result.data;
-
+  let hashtagRegex = /#[a-zA-Z0-9_]+/g;
+  let textWithoutHashtags = data.content.replace(hashtagRegex, "");
+  const tags = data.content.match(hashtagRegex);
   const newpost = await db.post.create({
     data: {
-      content: data!.content,
-      tags: ["#newpost"],
+      content: textWithoutHashtags,
+      tags: tags || [],
       userId: user!.id,
     },
   });

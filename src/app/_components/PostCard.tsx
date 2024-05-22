@@ -62,6 +62,15 @@ export default function PostCardItem({ post }: { post: any }) {
           />
         )}
         <span>{post.likes.length}</span>
+        {post.tags.length > 0 &&
+          post.tags.map((tag: string, index: number) => (
+            <span
+              key={index}
+              className="p-1 rounded-md text-sm ml-2 text-blue-400"
+            >
+              {tag}
+            </span>
+          ))}
       </div>
     </div>
   );
