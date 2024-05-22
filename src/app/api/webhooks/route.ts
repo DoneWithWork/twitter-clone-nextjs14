@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import db from "../../../../prisma/db/db";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -61,7 +62,7 @@ export async function POST(req: Request) {
         id: id as string,
         photoUrl: evt.data.image_url as string,
         email: evt.data.email_addresses[0].email_address as string,
-        username: evt.data.first_name as string,
+        username: evt.data.username as string,
       },
     });
     if (!newUser) {
@@ -78,7 +79,7 @@ export async function POST(req: Request) {
       data: {
         photoUrl: evt.data.image_url as string,
         email: evt.data.email_addresses[0].email_address as string,
-        username: evt.data.first_name as string,
+        username: evt.data.username as string,
       },
     });
     if (!updatedUser) {
@@ -101,6 +102,6 @@ export async function POST(req: Request) {
   }
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log("Webhook body:", body);
-
+  revalidatePath("/");
   return new Response("", { status: 200 });
 }

@@ -10,11 +10,14 @@ const NewPostSchema = z.object({
 
 export async function NewPost(prevState: unknown, formData: FormData) {
   const user = await currentUser();
+  if (!user) {
+    return { message: "You are not logged in!" };
+  }
   const result = NewPostSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
   if (result.success === false) {
-    return result.error.formErrors.fieldErrors;
+    return { message: result.error.formErrors.fieldErrors };
   }
   const data = result.data;
 
@@ -25,7 +28,11 @@ export async function NewPost(prevState: unknown, formData: FormData) {
       userId: user!.id,
     },
   });
+  if (!newpost) {
+    return { message: "Post Creation Failed!" };
+  }
 
   revalidatePath("/");
-  revalidatePath("/profile");
+  revalidatePath("/*");
+  return { message: "Post Created!" };
 }

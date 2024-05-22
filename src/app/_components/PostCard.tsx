@@ -25,19 +25,19 @@ export default function PostCardItem({ post }: { post: any }) {
     const like = await LikePost(args);
     setLiked(like);
   };
-  console.log(post.userId, post.CurUser.id);
+
   return (
     <div className="w-full p-2 border-b-[0.5px] border-gray-500 relative">
       <div className="flex flex-row items-center gap-5">
         <Image
-          src={post.CurUser.imageUrl}
+          src={post.user.photoUrl}
           width={50}
           height={50}
           alt="profile"
           className="rounded-[50%] border-gray-500 border-2"
         />
         <div>
-          <p className="font-semibold">{post.CurUser.username} </p>
+          <p className="font-semibold">{post.user.username} </p>
           <p className="text-sm text-gray-400">
             {new Date(post.createdAt).toDateString()}
           </p>

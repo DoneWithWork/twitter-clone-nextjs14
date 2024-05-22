@@ -17,7 +17,12 @@ export default async function Sidenav() {
       <h1 className="font-semibold text-2xl mx-auto mt-4">Twitter</h1>
       <div className="flex flex-col gap-10 mx-auto">
         {navbar.map((item) => (
-          <Link href={item.href} key={item.name}>
+          <Link
+            href={`${
+              item.href === "/profile" ? `/${user?.username}` : item.href
+            }`}
+            key={item.name}
+          >
             <div className="flex flex-row gap-5">
               <item.icon size={25} />
               <span>{item.name}</span>
@@ -35,7 +40,7 @@ export default async function Sidenav() {
               <UserButton afterSignOutUrl="/" />
             </div>
             <div className="hidden md:block">
-              <p className="font-semibold">{user?.firstName}</p>
+              <p className="font-semibold">{user?.username}</p>
               <p className="text-sm">{user?.emailAddresses[0].emailAddress}</p>
             </div>
           </div>

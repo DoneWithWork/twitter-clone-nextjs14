@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-
 }
 
 datasource db {
@@ -14,31 +13,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id String @id
-  username String
-  photoUrl String
-  email String
+model User {
+  id        String   @id
+  username  String
+  photoUrl  String
+  email     String
+  createdAt DateTime @default(now())
+
   posts Post[]
   likes Like[]
 }
 
-model Post{
-  id String @id @default(uuid())
+model Post {
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  tags String[]
-  likes Like[]
-  content String
-  userId String
-  user User @relation(fields: [userId], references: [id])
+  tags      String[]
+  likes     Like[]
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 }
 
-model Like{
-  id String @id @default(uuid())
+model Like {
+  id     String @id @default(uuid())
   userId String
   postId String
-  user User @relation(fields: [userId], references: [id])
-  post Post @relation(fields: [postId], references: [id])
-
+  user   User   @relation(fields: [userId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id])
 }

@@ -23,8 +23,8 @@ export async function LikePost(args: LikePostArgs) {
       },
     });
 
-    revalidatePath("/");
     revalidateTag("userpost");
+    revalidatePath("/(user)/[user]", "page");
     revalidatePath("/profile");
     return true;
   } else {
@@ -33,8 +33,8 @@ export async function LikePost(args: LikePostArgs) {
         id: like.id,
       },
     });
+    revalidatePath("/(user)/[user]", "page");
 
-    revalidatePath("/");
     revalidateTag("userpost");
     revalidatePath("/profile");
     return false;

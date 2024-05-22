@@ -12,4 +12,5 @@ export type UserType = {
   id: string;
   imageUrl: string;
   username: string;
+  unknownUserId: string;
 };
