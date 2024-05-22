@@ -38,7 +38,7 @@ export default async function UserProfile({
     id: SignedInUser.id,
   };
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div className="w-full flex flex-row items-center mx-2 my-3 gap-5 ">
         <GoBackBtn />
         <div>

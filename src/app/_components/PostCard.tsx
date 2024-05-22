@@ -4,6 +4,7 @@ import { LikePost } from "@/actions/LikePost";
 
 import { HeartIcon, ShareIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function PostCardItem({ post }: { post: any }) {
@@ -37,7 +38,12 @@ export default function PostCardItem({ post }: { post: any }) {
           className="rounded-[50%] border-gray-500 border-2"
         />
         <div>
-          <p className="font-semibold">{post.user.username} </p>
+          <Link
+            href={`/${post.user.username}`}
+            className="font-semibold hover:cursor-pointer hover:text-blue-200"
+          >
+            @{post.user.username}
+          </Link>
           <p className="text-sm text-gray-400">
             {new Date(post.createdAt).toDateString()}
           </p>

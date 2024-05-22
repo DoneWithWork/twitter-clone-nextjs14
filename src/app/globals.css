@@ -5,6 +5,34 @@
   margin: 0;
   padding: 0;
 }
+/* Styles for WebKit-based browsers (such as Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+/* Handle (thumb) */
+::-webkit-scrollbar-thumb {
+  background: black; /* Color of the thumb */
+  height: 5px;
+}
+
+/* Track (the area on which the thumb moves) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+}
+
+/* Styles for Firefox */
+/* The above styles only work in WebKit-based browsers. For Firefox, you need to use scrollbar-color and scrollbar-width properties. */
+
+/* Color of the thumb */
+* {
+  scrollbar-color: rgb(32, 116, 251) #333;
+}
+
+/* Width of the scrollbar */
+* {
+  scrollbar-width: thin;
+}
 body {
   background-color: rgb(12, 12, 12) !important;
   color: white !important;

@@ -14,3 +14,8 @@ export type UserType = {
   username: string;
   unknownUserId: string;
 };
+
+export type FollowBtnProps = {
+  currentUserId: string;
+  followUserId: string;
+};
